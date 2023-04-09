@@ -1,18 +1,26 @@
-import {DSVRowArray} from 'd3-dsv';
+export class GCP {
+    name: string;
+    n: number;
+    e: number;
+    h: number;
+}
 
-export class GCPFile {
-    gcps: string[];
+
+export class GCPList {
+    gcps: GCP[];
     columns: string[];
     set: any;
     constructor(gcps) {
-        // this.set = new Set();
-        // this.gcps = gcps.map( gcp => {
-        //    if (!this.set.has(gcp.name)) {
-        //        this.set.add(gcp.name);
-        //        return gcp;
-        //    }
-        // });
-        // this.columns = gcps.columns;
+        this.set = new Set();
+        this.gcps = gcps.filter(gcp => {
+            if (this.set.has(gcp.name)) {
+                return false;
+            } else {
+                this.set.add(gcp.name);
+                return true;
+            }
+        }).map(gcp => gcp as GCP);
+        this.columns = gcps.columns;
     }
 }
 
