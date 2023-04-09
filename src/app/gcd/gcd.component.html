@@ -1,0 +1,15 @@
+<app-dropfile (drop)="onDrop($event)"></app-dropfile>
+<input
+        type="file"
+        id="fileElem"
+        accept="text/csv"
+        class="visually-hidden"
+        (change)="onUpload($event)" />
+<label for="fileElem">Select a file</label>
+<div class="gcd-list-container">
+  <div class="gcd-list"><button (click)="onSort($event)" *ngFor="let col of columns" value="{{col}}">{{col}}</button></div>
+  <div class="gcd-list" *ngFor="let g of gcps">
+    <span *ngFor="let col of columns">{{g[col]}} </span>
+  </div>
+</div>
+

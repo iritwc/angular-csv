@@ -1,0 +1,42 @@
+input.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+
+  &:focus-within + label {
+    outline: thin dotted;
+  }
+
+  &+ label {
+    cursor: pointer;
+    background-color: #eee;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+.gcd-list {
+  display: flex;
+  margin: 5px 0;
+
+  * {
+    flex: 1;
+  }
+}
+
+.gcd-list-container {
+  //margin: 0 auto;
+}
