@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GcdComponent } from './gcd/gcd.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+    { path: '', component: GcdComponent }
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
