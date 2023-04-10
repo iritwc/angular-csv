@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GcpService} from '../gcp.service';
 import { GCPList } from '../gcp.model';
+import {MessageService} from '../message.service';
 
 @Component({
     selector: 'app-gcd',
@@ -10,7 +11,7 @@ import { GCPList } from '../gcp.model';
 export class GcdComponent implements OnInit {
     reader = new FileReader();
     gcpList: GCPList;
-    constructor(private gcpService: GcpService) {}
+    constructor(private gcpService: GcpService, private messageService: MessageService) {}
 
     ngOnInit() {
         this.subscribeLoadFile();
@@ -43,7 +44,7 @@ export class GcdComponent implements OnInit {
                 console.log(file);
                 this.handleFile(file);
             } else {
-                console.log(`Error uploadind a file of type ${file.type}. Expected *.csv.`);
+                this.messageService.add(`Error uploadind a file of type ${file.type}. Expected *.csv.`);
             }
         }
     }

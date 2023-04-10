@@ -3,6 +3,7 @@ export class GCP {
     n: number;
     e: number;
     h: number;
+    hide: boolean;
 }
 
 
