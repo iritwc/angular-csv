@@ -15,7 +15,7 @@ export class GcdComponent implements OnInit {
     list$!: Observable<GCP[]>;
     columns: string[];
     fileName: '';
-    term;
+    term = 'a';
     private searchTerms = new Subject<string>();
     constructor(private gcpService: GcpService, private messageService: MessageService) {}
 
@@ -30,7 +30,7 @@ export class GcdComponent implements OnInit {
             debounceTime(300),
 
             // ignore new term if same as previous term
-            distinctUntilChanged(),
+            // distinctUntilChanged(),
 
             // switch to new search observable each time the term changes
             switchMap((term: string) => this.gcpService.search(term)),
@@ -49,16 +49,17 @@ export class GcdComponent implements OnInit {
         this.term = term;
         this.searchTerms.next(term);
     }
+    onSort(event, term) {
+        const col = event.target.value;
+        console.log('sort ', col, term);
+        this.gcpService.sort(col).subscribe(order => this.search(term));
+    }
     onUpload(event) {
         const file = event.target.files[0];
         if (!file) { return; }
         this.handleFile(file);
     }
-    onSort(event, term) {
-        const col = event.target.value;
-        this.gcpService.sort(col).subscribe(order => this.search(term));
-    }
-    handleFile(file) {
+    private handleFile(file) {
         this.fileName = file.name;
         this.reader.readAsText(file);
     }

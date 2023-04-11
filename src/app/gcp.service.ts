@@ -38,6 +38,7 @@ export class GcpService {
         return of(this.sortOrder);
     }
     search(term: string): Observable<GCP[]> {
+        console.log('search server - term = ', term);
         if (!term.trim()) {
           return of(this.gcpList.gcps);
         }
