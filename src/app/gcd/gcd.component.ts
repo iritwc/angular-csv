@@ -15,6 +15,7 @@ export class GcdComponent implements OnInit {
     list$!: Observable<GCP[]>;
     columns: string[];
     fileName: '';
+    term;
     private searchTerms = new Subject<string>();
     constructor(private gcpService: GcpService, private messageService: MessageService) {}
 
@@ -40,11 +41,12 @@ export class GcdComponent implements OnInit {
             const result = (ev.target as FileReader).result  as string;
             this.gcpService.parse(result).subscribe(columns => {
                 this.columns = columns;
-                this.search('');
+                this.search(this.term);
             });
         };
     }
     search(term: string): void {
+        this.term = term;
         this.searchTerms.next(term);
     }
     onUpload(event) {
