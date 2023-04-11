@@ -15,7 +15,7 @@
   <button class="go-button" (click)="search(searchBox.value)" >Go</button>
   <div class="gcd-list"><button (click)="onSort($event, searchBox.value)" *ngFor="let col of columns" value="{{col}}">{{col}}</button></div>
   <div class="gcd-list" *ngFor="let gcd of list$ | async">
-    <span *ngFor="let col of columns">{{gcd[col]}} </span>
+    <span *ngFor="let col of columns">{{gcd[col]}}</span>
   </div>
 </div>
 

@@ -51,7 +51,6 @@ export class GcdComponent implements OnInit {
     }
     onSort(event, term) {
         const col = event.target.value;
-        console.log('sort ', col, term);
         this.gcpService.sort(col).subscribe(order => this.search(term));
     }
     onUpload(event) {
