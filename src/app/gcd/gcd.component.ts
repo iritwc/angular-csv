@@ -1,9 +1,9 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {GcpService} from '../gcp.service';
-import {GCP, GCPList} from '../gcp.model';
+import {GcpService} from './gcp.service';
+import {GCP} from './gcp.model';
 import {MessageService} from '../message.service';
 import {Observable, Subject} from 'rxjs';
-import {debounce, debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
+import {debounceTime, switchMap} from 'rxjs/operators';
 
 @Component({
     selector: 'app-gcd',
