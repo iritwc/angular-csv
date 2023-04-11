@@ -15,7 +15,7 @@ export class GcdComponent implements OnInit {
     list$!: Observable<GCP[]>;
     columns: string[];
     fileName: '';
-    term = 'a';
+    term = '';
     private searchTerms = new Subject<string>();
     constructor(private gcpService: GcpService, private messageService: MessageService) {}
 
