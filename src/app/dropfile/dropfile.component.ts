@@ -15,24 +15,20 @@ export class DropfileComponent implements OnInit {
   }
 
     onDragenter(e) {
-        console.log('drag enter');
         this.isDragging = true;
         e.stopPropagation();
         e.preventDefault();
     }
     onDragover(e) {
-        console.log('drag over');
         e.stopPropagation();
         e.preventDefault();
     }
     onDragleave(e) {
-        console.log('drag end', e);
         e.stopPropagation();
         e.preventDefault();
         this.isDragging = false;
     }
     onDrop(e) {
-        console.log('drop');
         e.stopPropagation();
         e.preventDefault();
         this.isDragging = false;
