@@ -28,21 +28,43 @@ input.visually-hidden {
   }
 }
 
-.gcd-list {
-  display: flex;
-  margin: 5px 0;
-
-  * {
-    flex: 1;
-  }
-}
-
-.gcd-list-container {
+.gcp-table {
   margin: 1em 1em 1em auto;
 
-  & button.go-button {
-    margin: 0 0 0 1em;
-    padding: 0 1em;
-    font-size: 1rem;
+
+  .gcp-row {
+    display: flex;
+    margin: 5px 0;
+
+    * {
+      flex: 1;
+      margin-right: 1em;
+      padding: 0 1em;
+    }
+
+    .actions{
+      display: flex;
+    }
+
+    i.fa.fa-edit, i.fa.fa-trash {
+      margin: 0 !important;
+    }
   }
+
+  button.small-button {
+    margin: 0 0 0 1em;
+    padding: 1em;
+
+    &.icon-button {
+      padding: 0;
+    }
+  }
+
+  .gcp-col {
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
 }

@@ -19,6 +19,7 @@ export class GcpService {
         return of(this.gcpList.columns);
     }
     sort(col: string): Observable<Order> {
+        // console.log('sort server ', col);
         if (this.sortOrder !== Order.asc) {
             this.sortOrder = Order.asc;
             this.gcpList.gcps = this.gcpList.gcps.sort((a, b) => {
@@ -38,18 +39,21 @@ export class GcpService {
         return of(this.sortOrder);
     }
     search(term: string): Observable<GCP[]> {
+        // console.log('search server ', term);
         if (!term.trim()) {
           return of(this.gcpList.gcps);
         }
         const filtered = this.gcpList.gcps.filter(gcp => gcp.name.toLowerCase().includes(term.trim().toLowerCase()));
         return of (filtered);
     }
-    remove(col: string, value: string): Observable<GCP[]> {
+    remove(gcp: GCP): Observable<GCP[]> {
+        const col = 'name';
+        const value = gcp[col];
         const { gcps } = this.gcpList;
-        const i = gcps.findIndex((gcp: GCP) => gcp[col] === value);
+        const i = gcps.findIndex((g: GCP) => g[col] === value);
         if (i > -1) {
-          return of([...gcps.slice(0, i), ...gcps.slice(i + 1)]);
+            return of(gcps.splice(i, 1));
         }
-        return of(gcps);
+        return of(null);
     }
 }

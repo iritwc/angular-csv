@@ -3,7 +3,7 @@ import {GcpService} from './gcp.service';
 import {GCP} from './gcp.model';
 import {MessageService} from '../message.service';
 import {Observable, Subject} from 'rxjs';
-import {debounceTime, switchMap} from 'rxjs/operators';
+import {debounceTime, switchMap, distinctUntilChanged} from 'rxjs/operators';
 
 @Component({
     selector: 'app-gcd',
@@ -44,6 +44,13 @@ export class GcdComponent implements OnInit {
                 this.search(this.term);
             });
         };
+    }
+    remove(gcp: GCP) {
+        this.gcpService.remove(gcp).subscribe( removed => {
+            if (removed){
+                this.search(this.term);
+            }
+        }  );
     }
     search(term: string): void {
         this.term = term;
