@@ -12,10 +12,10 @@ import {debounceTime, switchMap, distinctUntilChanged} from 'rxjs/operators';
 })
 export class GcdComponent implements OnInit {
     reader = new FileReader();
-    list$!: Observable<GCP[]>;
     columns: string[];
     fileName: '';
-    term = '';
+    term: string;
+    list$!: Observable<GCP[]>;
     private searchTerms = new Subject<string>();
     constructor(private gcpService: GcpService, private messageService: MessageService) {}
 
@@ -41,6 +41,7 @@ export class GcdComponent implements OnInit {
             const result = (ev.target as FileReader).result  as string;
             this.gcpService.parse(result).subscribe(columns => {
                 this.columns = columns;
+                console.log('onload', this.term, this.term);
                 this.search(this.term);
             });
         };
@@ -53,12 +54,13 @@ export class GcdComponent implements OnInit {
         }  );
     }
     search(term: string): void {
-        this.term = term;
+        console.log(`search term ${term} this.term ${this.term}`);
         this.searchTerms.next(term);
     }
-    onSort(event, term) {
+    onSort(event) {
         const col = event.target.value;
-        this.gcpService.sort(col).subscribe(order => this.search(term));
+        console.log('sort', this.term);
+        this.gcpService.sort(col).subscribe(order => this.search(this.term));
     }
     onUpload(event) {
         const file = event.target.files[0];
